@@ -81,8 +81,8 @@ struct OnboardingAIEnhancementStepView: View {
     private static let examples = [
         EnhancementExample(
             id: "message-format",
-            raw: "Hey John, Newline, how are you doing today? Next paragraph Best Newline, thanks.",
-            polished: "Hey John,\nHow are you doing today?\n\nBest,\nthanks."
+            raw: "Hey John, Newline, how are you doing today?",
+            polished: "Hey John,\nHow are you doing today?"
         ),
         EnhancementExample(
             id: "correction",
