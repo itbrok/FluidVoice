@@ -1001,9 +1001,8 @@ final class TypingService {
     private func captureTextBeforeCursorInFocusedField() -> String {
         guard let snapshot = self.captureFocusedTextSnapshot() else { return "" }
 
-        let scriptRange = snapshot.appScriptSelectedRange ?? snapshot.selectedRange
         if let scriptValue = snapshot.appScriptValue,
-           let scriptRange
+           let scriptRange = snapshot.appScriptSelectedRange
         {
             return Self.prefix(in: scriptValue, before: scriptRange.location)
         }

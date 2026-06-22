@@ -2783,22 +2783,14 @@ final class SettingsStore: ObservableObject {
         self.weekendsDontBreakStreak = payload.weekendsDontBreakStreak
         self.fillerWords = payload.fillerWords
         self.removeFillerWordsEnabled = payload.removeFillerWordsEnabled
-        self.gaavModeEnabled = payload.gaavModeEnabled
-        if let gaavLowercaseFirstLetterEnabled = payload.gaavLowercaseFirstLetterEnabled {
-            self.gaavLowercaseFirstLetterEnabled = gaavLowercaseFirstLetterEnabled
-        }
-        if let gaavRemoveTrailingPeriodEnabled = payload.gaavRemoveTrailingPeriodEnabled {
-            self.gaavRemoveTrailingPeriodEnabled = gaavRemoveTrailingPeriodEnabled
-        }
-        if let continuousDictationModeEnabled = payload.continuousDictationModeEnabled {
-            self.continuousDictationModeEnabled = continuousDictationModeEnabled
-        }
-        if let continuousDictationSpacingEnabled = payload.continuousDictationSpacingEnabled {
-            self.continuousDictationSpacingEnabled = continuousDictationSpacingEnabled
-        }
-        if let contextAwareCapitalizationEnabled = payload.contextAwareCapitalizationEnabled {
-            self.contextAwareCapitalizationEnabled = contextAwareCapitalizationEnabled
-        }
+        let restoredGaavModeEnabled = payload.gaavModeEnabled
+        let restoredContinuousDictationModeEnabled = payload.continuousDictationModeEnabled ?? false
+        self.gaavModeEnabled = restoredGaavModeEnabled
+        self.gaavLowercaseFirstLetterEnabled = payload.gaavLowercaseFirstLetterEnabled ?? restoredGaavModeEnabled
+        self.gaavRemoveTrailingPeriodEnabled = payload.gaavRemoveTrailingPeriodEnabled ?? restoredGaavModeEnabled
+        self.continuousDictationModeEnabled = restoredContinuousDictationModeEnabled
+        self.continuousDictationSpacingEnabled = payload.continuousDictationSpacingEnabled ?? restoredContinuousDictationModeEnabled
+        self.contextAwareCapitalizationEnabled = payload.contextAwareCapitalizationEnabled ?? restoredContinuousDictationModeEnabled
         self.pauseMediaDuringTranscription = payload.pauseMediaDuringTranscription
         self.vocabularyBoostingEnabled = payload.vocabularyBoostingEnabled
         self.customDictionaryEntries = payload.customDictionaryEntries
