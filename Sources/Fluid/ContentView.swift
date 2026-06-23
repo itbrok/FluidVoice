@@ -102,6 +102,10 @@ enum ShortcutRecordingTarget: Hashable {
         if case let .dictationPrompt(key) = self { return key }
         return nil
     }
+
+    var allowsMouseShortcut: Bool {
+        self == .primaryDictation
+    }
 }
 
 // MARK: - Minimal FluidAudio ASR Service (finalized text, macOS)
@@ -637,7 +641,7 @@ struct ContentView: View {
     }
 
     private func installShortcutCaptureMonitor() {
-        NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { event in
+        NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged, .leftMouseDown, .rightMouseDown, .otherMouseDown]) { event in
             self.handleShortcutCaptureEvent(event)
         }
     }
@@ -651,6 +655,8 @@ struct ContentView: View {
             return self.handleShortcutKeyDownEvent(event, modifiers: eventModifiers, isRecordingAnyShortcut: isRecordingAnyShortcut, recordingTarget: recordingTarget)
         } else if event.type == .flagsChanged {
             return self.handleShortcutFlagsChangedEvent(event, modifiers: eventModifiers, isRecordingAnyShortcut: isRecordingAnyShortcut, recordingTarget: recordingTarget)
+        } else if event.type == .leftMouseDown || event.type == .rightMouseDown || event.type == .otherMouseDown {
+            return self.handleShortcutMouseDownEvent(event, modifiers: eventModifiers, isRecordingAnyShortcut: isRecordingAnyShortcut, recordingTarget: recordingTarget)
         }
 
         return event
@@ -698,6 +704,39 @@ struct ContentView: View {
         }
         self.resetPendingShortcutState()
         DebugLogger.shared.debug("NSEvent monitor: Finished recording shortcut", source: "ContentView")
+        return nil
+    }
+
+    private func handleShortcutMouseDownEvent(
+        _ event: NSEvent,
+        modifiers eventModifiers: NSEvent.ModifierFlags,
+        isRecordingAnyShortcut: Bool,
+        recordingTarget: ShortcutRecordingTarget?
+    ) -> NSEvent? {
+        guard isRecordingAnyShortcut else {
+            self.shortcutRecordingMessage = nil
+            self.resetPendingShortcutState()
+            return event
+        }
+
+        let newShortcut = HotkeyShortcut(mouseButton: event.buttonNumber, modifierFlags: self.pendingModifierFlags.union(eventModifiers))
+        DebugLogger.shared.debug("NSEvent monitor: Recording new mouse shortcut: \(newShortcut.displayString)", source: "ContentView")
+
+        if let recordingTarget,
+           let conflictMessage = self.shortcutConflictMessage(for: newShortcut, target: recordingTarget)
+        {
+            self.shortcutRecordingMessage = conflictMessage
+            self.resetPendingShortcutState()
+            DebugLogger.shared.debug("NSEvent monitor: Mouse shortcut conflict while recording: \(conflictMessage)", source: "ContentView")
+            return nil
+        }
+
+        self.shortcutRecordingMessage = nil
+        if let recordingTarget {
+            self.assignRecordedShortcut(newShortcut, to: recordingTarget)
+        }
+        self.resetPendingShortcutState()
+        DebugLogger.shared.debug("NSEvent monitor: Finished recording mouse shortcut", source: "ContentView")
         return nil
     }
 
@@ -883,6 +922,16 @@ struct ContentView: View {
     }
 
     private func shortcutConflictMessage(for shortcut: HotkeyShortcut, target: ShortcutRecordingTarget) -> String? {
+        if shortcut.isMouseShortcut {
+            guard target.allowsMouseShortcut else {
+                return "Mouse clicks can only be assigned to Primary Dictation Shortcut"
+            }
+
+            if shortcut.isUnmodifiedLeftOrRightClick, let mouseButton = shortcut.mouseButton {
+                return "\(HotkeyShortcut.mouseButtonToString(mouseButton)) needs a modifier key"
+            }
+        }
+
         let configuredShortcuts: [(ShortcutRecordingTarget, HotkeyShortcut)] = [
             (.primaryDictation, self.hotkeyShortcut),
             (.secondaryDictation, self.promptModeHotkeyShortcut),

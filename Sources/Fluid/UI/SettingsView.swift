@@ -653,11 +653,11 @@ struct SettingsView: View {
                                 // MARK: - Shortcuts Section
 
                                 VStack(alignment: .leading, spacing: 8) {
-                                    Text("Keyboard Shortcuts")
+                                    Text("Shortcuts")
                                         .font(.subheadline.weight(.medium))
                                         .foregroundStyle(.secondary)
 
-                                    Text("Changes usually apply immediately. If a new shortcut does not respond, restart FluidVoice.")
+                                    Text("Primary dictation can use keys or an allowed mouse button. Changes usually apply immediately.")
                                         .font(.caption)
                                         .foregroundStyle(.tertiary)
 
@@ -666,7 +666,7 @@ struct SettingsView: View {
                                             icon: "mic.fill",
                                             iconColor: .secondary,
                                             title: "Primary Dictation Shortcut",
-                                            description: "Defaults to raw transcription, but can use Off, Default, or any custom prompt."
+                                            description: "Use a keyboard shortcut, side mouse button, or modified mouse click."
                                         ),
                                         shortcut: self.hotkeyShortcut,
                                         isRecording: self.isRecording(.primaryDictation),
