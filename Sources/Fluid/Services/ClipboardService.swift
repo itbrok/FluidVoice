@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Foundation
 
@@ -33,3 +34,4 @@ enum ClipboardService {
         return pasteboard.string(forType: .string)
     }
 }
+#endif

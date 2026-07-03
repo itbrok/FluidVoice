@@ -1,3 +1,4 @@
+#if os(macOS)
 import Accelerate
 import AVFoundation
 import Combine
@@ -3360,3 +3361,4 @@ private final class AudioCapturePipeline {
         return output
     }
 }
+#endif

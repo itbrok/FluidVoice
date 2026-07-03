@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Combine
 
@@ -91,3 +92,4 @@ final class ActiveAppMonitor: ObservableObject {
         }
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import ApplicationServices
 import Foundation
@@ -162,3 +163,4 @@ final class TextSelectionService {
         DebugLogger.shared.debug(line, source: "TextSelectionService")
     }
 }
+#endif

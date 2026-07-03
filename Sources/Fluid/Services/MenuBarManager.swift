@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Combine
 import PromiseKit
@@ -876,3 +877,4 @@ final class MenuBarManager: NSObject, ObservableObject, NSMenuDelegate {
         window.makeKeyAndOrderFront(nil)
     }
 }
+#endif

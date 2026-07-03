@@ -1,3 +1,4 @@
+#if os(macOS)
 //
 //  OverlayScreenResolver.swift
 //  Fluid
@@ -13,3 +14,4 @@ enum OverlayScreenResolver {
         } ?? NSScreen.main ?? NSScreen.screens.first
     }
 }
+#endif

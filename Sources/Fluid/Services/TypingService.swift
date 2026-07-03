@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import ApplicationServices
 import Carbon.HIToolbox
@@ -1271,3 +1272,4 @@ final class TypingService {
         keyUpEvent.post(tap: .cghidEventTap)
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Foundation
 
@@ -1930,3 +1931,4 @@ final class GlobalHotkeyManager: NSObject {
         cleanupEventTap()
     }
 }
+#endif

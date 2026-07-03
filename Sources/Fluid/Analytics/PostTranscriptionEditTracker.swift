@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Foundation
 
@@ -112,3 +113,4 @@ actor PostTranscriptionEditTracker {
         }
     }
 }
+#endif

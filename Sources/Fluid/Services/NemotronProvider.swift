@@ -1,3 +1,4 @@
+#if os(macOS)
 import Foundation
 
 #if arch(arm64)
@@ -681,4 +682,5 @@ final class NemotronProvider: TranscriptionProvider {
         NSError(domain: "NemotronProvider", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
     }
 }
+#endif
 #endif

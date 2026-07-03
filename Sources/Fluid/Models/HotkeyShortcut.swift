@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Carbon
 import Foundation
@@ -344,3 +345,4 @@ extension HotkeyShortcut {
         }
     }
 }
+#endif

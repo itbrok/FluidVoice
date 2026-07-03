@@ -1,3 +1,4 @@
+#if os(macOS)
 import CoreML
 import Foundation
 #if arch(arm64)
@@ -725,4 +726,5 @@ extension HuggingFaceModelDownloader {
         )
     }
 }
+#endif
 #endif

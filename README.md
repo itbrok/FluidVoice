@@ -10,14 +10,9 @@
   <a href="https://trendshift.io/repositories/16601?utm_source=repository-badge&utm_medium=badge&utm_campaign=badge-repository-16601" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/16601" alt="altic-dev%2FFluidVoice | Trendshift" width="250" height="55"/></a>
 </p>
 
-Open source voice-to-text dictation app for macOS with on-device AI enhancement.
-
-**Install with Homebrew:** `brew install --cask fluidvoice`
+Open source voice-to-text dictation app for Windows with on-device AI enhancement. (This branch is specifically for the Windows version).
 
 **Manual download:** [latest release](https://github.com/altic-dev/FluidVoice/releases/latest)
-
-> [!NOTE]
-> FluidVoice is on macOS today. **iOS and Windows are on the way** — join the waitlist to get notified when we launch: **[altic.dev/fluid/waitlist](https://www.altic.dev/fluid/waitlist)**
 
 > [!IMPORTANT]
 > This project is free and open source under GPLv3. If FluidVoice is useful to you, please star the repository — it helps visibility and keeps development going.
@@ -115,8 +110,8 @@ https://github.com/user-attachments/assets/c57ef6d5-f0a1-4a3f-a121-637533442c24
 
 ## Features
 
-- **Fluid Intelligence** — on-device AI enhancement for smart formatting, context-aware capitalization, and post-processing, all running locally on your Mac with zero data leaving your machine
-- **Command Mode** — control your Mac by voice: launch apps, run shortcuts, trigger system actions, and automate workflows without touching the keyboard
+- **Fluid Intelligence** — on-device AI enhancement for smart formatting, context-aware capitalization, and post-processing, all running locally on your Windows PC with zero data leaving your machine
+- **Command Mode** — control your PC by voice: launch apps, run shortcuts, trigger system actions, and automate workflows without touching the keyboard
 - **Write Mode** — write or rewrite text directly in any text field across any app. Select text and rewrite it, or dictate new content inline
 - **Live Preview** — real-time transcription overlay with notch support, so you see words appear as you speak
 - **Multiple Speech Models** — Nemotron Speech 3.5, Parakeet Flash, Parakeet TDT v3 & v2, Cohere Transcribe, Apple Speech, and Whisper. Pick the model that fits your language and latency needs

@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Foundation
 import PromiseKit
@@ -745,3 +746,4 @@ final class SimpleUpdater {
         }
     }
 }
+#endif

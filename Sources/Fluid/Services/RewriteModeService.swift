@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import Combine
 import CryptoKit
@@ -487,3 +488,4 @@ final class RewriteModeService: ObservableObject {
             providerID.trimmingCharacters(in: .whitespacesAndNewlines) == PrivateAIProviderFeature.shared.providerID
     }
 }
+#endif

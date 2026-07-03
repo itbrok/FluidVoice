@@ -1,3 +1,4 @@
+#if os(macOS)
 import AppKit
 import ApplicationServices
 import Combine
@@ -4812,3 +4813,4 @@ extension SettingsStore {
         return newModel
     }
 }
+#endif

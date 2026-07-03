@@ -1,3 +1,4 @@
+#if os(macOS)
 import AVFoundation
 import Foundation
 #if arch(arm64)
@@ -270,4 +271,5 @@ final class ParakeetRealtimeProvider: TranscriptionProvider {
         throw NSError(domain: "ParakeetRealtimeProvider", code: -1, userInfo: [NSLocalizedDescriptionKey: "Parakeet Flash requires Apple Silicon"])
     }
 }
+#endif
 #endif

@@ -1,3 +1,4 @@
+#if os(macOS)
 //
 //  NotchOverlayManager.swift
 //  Fluid
@@ -699,3 +700,4 @@ private extension NotchOverlayManager.NotchPresentationPolicy {
         }
     }
 }
+#endif

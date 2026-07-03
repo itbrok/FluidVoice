@@ -1,3 +1,4 @@
+#if os(macOS)
 import CoreML
 import FluidAudio
 import Foundation
@@ -251,3 +252,4 @@ extension SettingsStore.SpeechModel {
         }
     }
 }
+#endif

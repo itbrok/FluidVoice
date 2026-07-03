@@ -1,3 +1,4 @@
+#if os(macOS)
 //
 //  ContentView.swift
 //  fluid
@@ -4303,3 +4304,4 @@ struct CardAppearAnimation: ViewModifier {
             .animation(.spring(response: 0.8, dampingFraction: 0.75, blendDuration: 0.2).delay(self.delay), value: self.appear)
     }
 }
+#endif
